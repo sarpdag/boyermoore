@@ -12,6 +12,7 @@ func Index(s string, substr string) int {
 func IndexWithTable(d *[256]int, s string, substr string) int {
 	lsub := len(substr)
 	ls := len(s)
+	// fmt.Println(ls, lsub)
 	switch {
 	case lsub == 0:
 		return 0
@@ -27,24 +28,17 @@ func IndexWithTable(d *[256]int, s string, substr string) int {
 	i := 0
 	for i+lsub-1 < ls {
 		j := lsub - 1
-		for ; j >= 0; j-- {
-			if s[i+j] != substr[j] {
-				if slidx := d[s[i+j]]; slidx > -100 {
-					val := slidx
-					if slidx <= 0 {
-						val = 1
-					}
-					i += val
-				} else {
-					i += lsub
-				}
-				break
-			}
+		for ; j >= 0 && s[i+j] == substr[j]; j-- {
 		}
-
-		if j == -1 {
+		if j < 0 {
 			return i
 		}
+
+		slid := j - d[s[i+j]]
+		if slid < 1 {
+			slid = 1
+		}
+		i += slid
 	}
 	return -1
 }
@@ -53,10 +47,10 @@ func IndexWithTable(d *[256]int, s string, substr string) int {
 func CalculateSlideTable(substr string) [256]int {
 	var d [256]int
 	for i := 0; i < 256; i++ {
-		d[i] = -100
+		d[i] = -1
 	}
 	for i := 0; i < len(substr); i++ {
-		d[substr[i]] = len(substr) - i - 2
+		d[substr[i]] = i
 	}
 	return d
 }
