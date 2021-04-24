@@ -52,45 +52,37 @@ func main() {
 ```
 
 ## Benchmarks
-
 ```
-$ go test -bench=.
-goos: darwin
-goarch: amd64
-pkg: github.com/sarpdag/boyermoore
-cpu: Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz
+$ go test -bench=. -count=5 > bench.txt
+$ benchstat bench.txt
 
-BenchmarkBruteforce/shortEarlySub-12         	 8050245	       135.3 ns/op
-BenchmarkBruteforce/shortLateSub-12          	  175002	      6497 ns/op
-BenchmarkBruteforce/longSub-12               	  165993	      7233 ns/op
-BenchmarkBruteforce/longNotFound-12          	  148197	      7816 ns/op
-BenchmarkBruteforce/endOfString-12           	  133054	      8655 ns/op
-BenchmarkBruteforce/begOfString-12           	254873073	         4.755 ns/op
-BenchmarkBruteforce/shortMid-12              	  270502	      4167 ns/op
-
-BenchmarkStringsIndex/shortEarlySub-12       	19605667	        58.64 ns/op
-BenchmarkStringsIndex/shortLateSub-12        	 6066878	       192.3 ns/op
-BenchmarkStringsIndex/longSub-12             	  332367	      3323 ns/op
-BenchmarkStringsIndex/longNotFound-12        	  542186	      2085 ns/op
-BenchmarkStringsIndex/endOfString-12         	  304563	      3913 ns/op
-BenchmarkStringsIndex/begOfString-12         	174452732	         6.994 ns/op
-BenchmarkStringsIndex/shortMid-12            	  562904	      2065 ns/op
-
-BenchmarkBM/shortEarlySub-12                 	 4530505	       258.3 ns/op
-BenchmarkBM/shortLateSub-12                  	  350739	      3269 ns/op
-BenchmarkBM/longSub-12                       	 1266339	       935.3 ns/op
-BenchmarkBM/longNotFound-12                  	 2445733	       470.6 ns/op
-BenchmarkBM/endOfString-12                   	  637333	      1804 ns/op
-BenchmarkBM/begOfString-12                   	 6669206	       201.0 ns/op
-BenchmarkBM/shortMid-12                      	  874108	      1360 ns/op
-
-BenchmarkBMPregenerated/shortEarlySub-12     	17737701	        67.51 ns/op
-BenchmarkBMPregenerated/shortLateSub-12      	  373986	      3179 ns/op
-BenchmarkBMPregenerated/longSub-12           	 1729155	       680.2 ns/op
-BenchmarkBMPregenerated/longNotFound-12      	 5010907	       234.2 ns/op
-BenchmarkBMPregenerated/endOfString-12       	  768459	      1571 ns/op
-BenchmarkBMPregenerated/begOfString-12       	181285944	         6.363 ns/op
-BenchmarkBMPregenerated/shortMid-12          	  983270	      1214 ns/op
-PASS
-ok  	github.com/sarpdag/boyermoore	39.736s
+name                             time/op
+Bruteforce/shortEarlySub-12       140ns ± 3%
+Bruteforce/shortLateSub-12       7.16µs ± 5%
+Bruteforce/longSub-12            7.38µs ± 3%
+Bruteforce/longNotFound-12       8.06µs ± 5%
+Bruteforce/endOfString-12        8.82µs ± 3%
+Bruteforce/begOfString-12        5.00ns ± 3%
+Bruteforce/shortMid-12           4.24µs ± 3%
+StringsIndex/shortEarlySub-12    61.9ns ± 4%
+StringsIndex/shortLateSub-12      198ns ± 1%
+StringsIndex/longSub-12          3.61µs ± 4%
+StringsIndex/longNotFound-12     2.11µs ± 1%
+StringsIndex/endOfString-12      3.78µs ± 3%
+StringsIndex/begOfString-12      6.49ns ± 1%
+StringsIndex/shortMid-12         1.93µs ± 1%
+BM/shortEarlySub-12               280ns ±25%
+BM/shortLateSub-12               3.31µs ± 2%
+BM/longSub-12                    1.08µs ± 6%
+BM/longNotFound-12                518ns ± 7%
+BM/endOfString-12                1.85µs ± 6%
+BM/begOfString-12                 200ns ± 9%
+BM/shortMid-12                   1.38µs ± 2%
+BMPregenerated/shortEarlySub-12  66.4ns ± 2%
+BMPregenerated/shortLateSub-12   3.18µs ± 6%
+BMPregenerated/longSub-12         718ns ± 8%
+BMPregenerated/longNotFound-12    236ns ± 5%
+BMPregenerated/endOfString-12    1.55µs ± 4%
+BMPregenerated/begOfString-12    6.52ns ± 6%
+BMPregenerated/shortMid-12       1.12µs ± 5%
 ```
