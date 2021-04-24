@@ -57,32 +57,32 @@ $ go test -bench=. -count=5 > bench.txt
 $ benchstat bench.txt
 
 name                             time/op
-Bruteforce/shortEarlySub-12       140ns ± 3%
-Bruteforce/shortLateSub-12       7.16µs ± 5%
-Bruteforce/longSub-12            7.38µs ± 3%
-Bruteforce/longNotFound-12       8.06µs ± 5%
-Bruteforce/endOfString-12        8.82µs ± 3%
-Bruteforce/begOfString-12        5.00ns ± 3%
-Bruteforce/shortMid-12           4.24µs ± 3%
-StringsIndex/shortEarlySub-12    61.9ns ± 4%
-StringsIndex/shortLateSub-12      198ns ± 1%
-StringsIndex/longSub-12          3.61µs ± 4%
-StringsIndex/longNotFound-12     2.11µs ± 1%
-StringsIndex/endOfString-12      3.78µs ± 3%
-StringsIndex/begOfString-12      6.49ns ± 1%
-StringsIndex/shortMid-12         1.93µs ± 1%
-BM/shortEarlySub-12               280ns ±25%
-BM/shortLateSub-12               3.31µs ± 2%
-BM/longSub-12                    1.08µs ± 6%
-BM/longNotFound-12                518ns ± 7%
-BM/endOfString-12                1.85µs ± 6%
-BM/begOfString-12                 200ns ± 9%
-BM/shortMid-12                   1.38µs ± 2%
-BMPregenerated/shortEarlySub-12  66.4ns ± 2%
-BMPregenerated/shortLateSub-12   3.18µs ± 6%
-BMPregenerated/longSub-12         718ns ± 8%
-BMPregenerated/longNotFound-12    236ns ± 5%
-BMPregenerated/endOfString-12    1.55µs ± 4%
-BMPregenerated/begOfString-12    6.52ns ± 6%
-BMPregenerated/shortMid-12       1.12µs ± 5%
+Bruteforce/shortEarlySub-12       138ns ± 2%
+Bruteforce/shortLateSub-12       6.77µs ± 2%
+Bruteforce/longSub-12            7.11µs ± 9%
+Bruteforce/longNotFound-12       8.89µs ± 8%
+Bruteforce/endOfString-12        9.04µs ± 3%
+Bruteforce/begOfString-12        4.77ns ± 3%
+Bruteforce/shortMid-12           4.41µs ± 2%
+StringsIndex/shortEarlySub-12    63.4ns ± 3%
+StringsIndex/shortLateSub-12      214ns ± 2%
+StringsIndex/longSub-12          3.79µs ± 4%
+StringsIndex/longNotFound-12     2.27µs ± 1%
+StringsIndex/endOfString-12      4.05µs ± 2%
+StringsIndex/begOfString-12      7.13ns ± 3%
+StringsIndex/shortMid-12         2.02µs ± 3%
+BM/shortEarlySub-12               374ns ± 7%
+BM/shortLateSub-12               9.51µs ± 1%
+BM/longSub-12                    1.00µs ± 9%
+BM/longNotFound-12                723ns ± 7%
+BM/endOfString-12                3.07µs ± 8%
+BM/begOfString-12                 199ns ± 6%
+BM/shortMid-12                   3.29µs ± 4%
+BMPregenerated/shortEarlySub-12   186ns ± 2%
+BMPregenerated/shortLateSub-12   9.54µs ± 5%
+BMPregenerated/longSub-12         744ns ± 2%
+BMPregenerated/longNotFound-12    444ns ± 2%
+BMPregenerated/endOfString-12    2.53µs ± 2%
+BMPregenerated/begOfString-12    6.28ns ± 3%
+BMPregenerated/shortMid-12       2.90µs ± 3%
 ```
