@@ -86,3 +86,8 @@ BMPregenerated/endOfString-12    2.53µs ± 2%
 BMPregenerated/begOfString-12    6.28ns ± 3%
 BMPregenerated/shortMid-12       2.90µs ± 3%
 ```
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
