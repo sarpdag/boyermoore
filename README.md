@@ -1,6 +1,6 @@
 # boyermoore
 
-Implementation of Boyer-Moore fast string search algorithm in Go, according to my undestanding of [https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/](https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/). 
+Implementation of Boyer-Moore fast string search algorithm in Go, according to my understanding of [https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/](https://www.cs.utexas.edu/users/moore/best-ideas/string-searching/). 
 
 If you need to search big chunks of string (or []byte) a lot, you can benefit from this package or Boyer-Moore algorithm.
 
