@@ -3,9 +3,9 @@ package boyermoore
 import "testing"
 
 // TestIndexWithStringsPkg uses test cases from `strings` package to be sure it is tested with the same cases
-func TestIndexWithStringsPkg(t *testing.T) {
+func TestIndexStringWithStringsPkg(t *testing.T) {
 	for _, it := range indexTests {
-		calculated := Index(it.s, it.sep)
+		calculated := IndexString(it.s, it.sep)
 		if calculated != it.out {
 			t.Errorf("%q %q Expected %d calculated %d", it.s, it.sep, it.out, calculated)
 		}

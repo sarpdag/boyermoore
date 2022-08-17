@@ -6,7 +6,7 @@ If you need to search big chunks of string (or []byte) a lot, you can benefit fr
 
 In my test cases long search terms can be 10 times faster than `strings` package. Looks like strings package is currently using [Rabin Karp](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm) algorithm for longer sub string lookups.
 
-For more details you can check source code it is around 60 lines.
+For more details you can check source code. Index, CalculateSlideTable, and IndexWithTable combined are around 60 lines.
 
 
 ## Usage/Examples
