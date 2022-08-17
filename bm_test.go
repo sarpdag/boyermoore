@@ -37,8 +37,16 @@ var table = []struct {
 	{"shortMid", shortMid},
 }
 
+func TestIndexString(t *testing.T) {
+	testCases(t, IndexString)
+}
+
 func TestIndex(t *testing.T) {
-	testCases(t, Index)
+	// This should not be tested for performance
+	indexStr := func(s string, substr string) int {
+		return Index([]byte(s), []byte(substr))
+	}
+	testCases(t, indexStr)
 }
 
 func TestIndexBruteforceByte(t *testing.T) {
@@ -82,7 +90,7 @@ func BenchmarkBM(b *testing.B) {
 	for _, tc := range table {
 		b.Run(tc.name, func(bs *testing.B) {
 			for i := 0; i < bs.N; i++ {
-				Index(longText, tc.substr)
+				IndexString(longText, tc.substr)
 			}
 		})
 	}
@@ -91,9 +99,9 @@ func BenchmarkBM(b *testing.B) {
 func BenchmarkBMPregenerated(b *testing.B) {
 	for _, tc := range table {
 		b.Run(tc.name, func(bs *testing.B) {
-			d := CalculateSlideTable(tc.substr)
+			d := CalculateSlideTableString(tc.substr)
 			for i := 0; i < bs.N; i++ {
-				IndexWithTable(&d, longText, tc.substr)
+				IndexWithTableString(&d, longText, tc.substr)
 			}
 		})
 	}
@@ -140,3 +148,29 @@ Of the omitted language features, the designers explicitly argue against asserti
 The designers express an openness to generic programming and note that built-in functions are in fact type-generic, but these are treated as special cases; Pike calls this a weakness that may at some point be changed.[53] The Google team built at least one compiler for an experimental Go dialect with generics, but did not release it.[97] They are also open to standardizing ways to apply code generation.[98] In June 2020, a new draft design document[99] was published, which would add the necessary syntax to Go for declaring generic functions and types. A code translation tool go2go was provided to allow users to try out the new syntax, along with a generics-enabled version of the online Go Playground.[100]
 Initially omitted, the exception-like panic/recover mechanism was eventually added, which the Go authors advise using for unrecoverable errors such as those that should halt an entire program or server request, or as a shortcut to propagate errors up the stack within a package (but not across package boundaries; there, error returns are the standard API).`
 )
+
+var revtable = []struct {
+	text   string
+	substr string
+	index  int
+}{
+	{"this is a string.", "is", 5},
+	{"this is a string.", "a ", 8},
+	{"this is a string.", "str", 10},
+	{"this is a string.", "this", 0},
+	{"this is a string.", "ing.", 13},
+	{"this is a string.", "s", 10},
+	{"this is a string.", "", 16},
+	{"this is a string.", "boat", -1},
+	{"boat", "boat", 0},
+	{"at", "float", -1},
+}
+
+func TestIndexRev(t *testing.T) {
+	for i, tc := range revtable {
+		n := IndexRev([]byte(tc.text), []byte(tc.substr))
+		if n != tc.index {
+			t.Fatalf("Case %d: In '%s' expected index of '%s' to be %d but it is %d", i, tc.text, tc.substr, tc.index, n)
+		}
+	}
+}
